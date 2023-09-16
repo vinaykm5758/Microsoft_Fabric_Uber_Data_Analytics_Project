@@ -16,11 +16,18 @@ Raw Layer: Loaded using ADF into Lakehouse Raw Folder
 ![image](https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/assets/45409524/314c6821-b45a-463a-b660-084ab7c3ccb4)
 
 
+DELTA FORMAT FILES has a great addition of "_delta_log" which is used to capture and perform ACID Transactions/ Versioning 
+
+![image](https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/assets/45409524/dae39ed0-2415-44db-bae1-ce5e1441dc30)
 
 
 Processed Layer: Transformations performed using Python and Pyspark
 
 ![image](https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/assets/45409524/1a49084f-3df1-464c-92f9-a77ae6004fcc)
+
+
+Raw to Processed layer code URL: https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/blob/main/Uber_Extract_Raw_to_Processed_Facts_and_Dimensions.ipynb
+
 
 
 DELTA TABLES: Using Pyspark, converted Pandas data frames to Pyspark Dataframe and loaded them into DELTA format files and created DELTA Tables
@@ -29,24 +36,16 @@ DELTA TABLES: Using Pyspark, converted Pandas data frames to Pyspark Dataframe a
 ![image](https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/assets/45409524/b1a5cc55-c38b-4b81-a2c1-f1292b779567)
 
 
-FINAL SQL QUERY:
+Creation of Delta tables using Pyspark code URL : https://github.com/vinaykm5758/Microsoft_Fabric_Uber_Data_Analytics_Project/blob/main/Uber_Processed_to_DELTA_Tables.ipynb
+
+
+Final SQL QUERY:
 
 %%sql
 
 SELECT
-f.VendorID,
-p.passenger_count,
-td.trip_distance,
-rc.RatecodeID,
-f.store_and_fwd_flag,
-pt.payment_type,
-f.fare_amount,
-f.extra,
-f.mta_tax,
-f.tip_amount,
-f.tolls_amount,
-f.improvement_surcharge,
-f.total_amount
+f.VendorID, p.passenger_count, td.trip_distance, rc.RatecodeID, f.store_and_fwd_flag, pt.payment_type,
+f.fare_amount, f.extra, f.mta_tax, f.tip_amount, f.tolls_amount, f.improvement_surcharge, f.total_amount
 from fact_table_managed_delta f
 join dim_passenger_count_managed_delta p on f.passenger_count_id = p.passenger_count_id
 join dim_trip_distance_managed_delta td on f.trip_distance_id = td.trip_distance_id
