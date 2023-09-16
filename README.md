@@ -1,7 +1,15 @@
 # Microsoft_Fabric_Uber_Data_Analytics_Project
 This repo contains details about Microsoft Fabric Uber Data Analytics 
 
-Data flow details
+**Project Details**
+
+1. Extracted the yellow_tripdata_2023-01 parquet data from the NYC website using ADF via HTTP Linked connection and loaded into Lakehouse as Parquet format
+2. Transformed the data and created Facts and Dimension tables using Pyspark
+3. Converted Pandas to Pyspark data frames and created DELTA format files
+4. Using DELTA format files as source, created DELTA tables in the uber_lakehouse database
+5. Compared and validated the record counts from the processed layer into tables- counts matched
+6. Created Sample SQL Query for validations
+
 
 Source: https://www.nyc.gov/site/tlc/about/tlc-trip-record-data.page
 
